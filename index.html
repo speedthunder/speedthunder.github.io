@@ -1,3 +1,71 @@
-<html>
-  hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>駭客畫面</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            color: green;
+            font-family: monospace;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let cols, drops;
+        const fontSize = 14;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            cols = Math.floor(canvas.width / fontSize);
+            drops = Array(cols).fill(0);
+        }
+
+        function randomChar() {
+            return String.fromCharCode(Math.floor(Math.random() * (127 - 1) + 1));
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = `${fontSize}px monospace`;
+
+            // 增加字元的亮度
+            ctx.fillStyle = '#00FF00';  // Brighter green color
+
+            for (let i = 0; i < cols; i++) {
+                const text = randomChar();
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                // 加快瀑布的流速
+                if (Math.random() < 0.6) {  // Increased the probability to make it faster
+                    drops[i] = (drops[i] + 1) % (canvas.height / fontSize + 1);
+                }
+            }
+        }
+
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        animate();
+    </script>
+</body>
 </html>
