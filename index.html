@@ -2,196 +2,233 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人自介網頁</title>
-    <!-- 樣式 -->
-    <style>
-        body * {
-            box-sizing: border-box;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>個人自介網頁</title>
+        <style>
+                body {
+                        margin: 0;
+                        overflow: hidden;
+                        font-family: monospace;
+                        background-color: black;
+                        color: green;
+                }
 
-        body {
-            padding-top: 85px;
-        }
+                canvas {
+                        display: block;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        z-index: -1;
+                }
 
+                /* Personal webpage styles */
+                body * {
+                        box-sizing: border-box;
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                }
 
-        /* 網頁Header區塊 */
-        header {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 28px 0;
-            display: flex;
-            justify-content: center;
-            background-color: rgba(255, 255, 255, .8);
-        }
+                body {
+                        padding-top: 85px;
+                        font-family: sans-serif;
+                        /* Change font family */
+                }
 
-        header nav {
-            width: 990px;
-            display: inline-flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 39px;
-        }
+                header {
+                        width: 100%;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        padding: 28px 0;
+                        display: flex;
+                        justify-content: center;
+                        background-color: rgba(255, 255, 255, .8);
+                        z-index: 10;
+                }
 
-        header nav a {
-            text-decoration: none;
-            color: rgba(0, 0, 0, 0.60);
-            font-size: 20px;
-            transition: .3s;
-        }
+                header nav {
+                        width: 990px;
+                        display: inline-flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        gap: 50px;
+                }
 
-        header nav a.active,
-        header nav a:hover {
-            color: #FBC264;
-        }
+                header nav a {
+                        text-decoration: none;
+                        color: rgba(0, 0, 0, 0.60);
+                        font-size: 20px;
+                        transition: .3s;
+                }
 
-        /* 主要內容區塊 */
-        main {
-            width: 990px;
-            display: flex;
-            margin: auto;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding-top: 112px;
-        }
+                header nav a.active,
+                header nav a:hover {
+                        color: #FF0000;
+                }
 
-        main div {
-            width: 50%;
-        }
+                main {
+                        width: 990px;
+                        display: flex;
+                        margin: auto;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        padding-top: 150px;
+                        position: relative;
+                        /* Ensure it is positioned in the document flow */
+                        z-index: 10;
+                }
 
-        main div h1 {
-            font-size: 60px;
-            color: #000;
-            font-weight: 400;
-            margin-bottom: 24px;
-        }
+                main div {
+                        width: 50%;
+                }
 
-        main div p {
-            font-size: 32px;
-            color: #000;
-            font-weight: 400;
-            margin-bottom: 24px;
-        }
+                main div h1 {
+                        font-size: 60px;
+                        color:  #f5fa05;
+                        font-weight: 400;
+                        margin-bottom: 24px;
+                }
 
-        main div p .blue {
-            color: #4E89F4;
-        }
-        main div p .black {
-            color:#000;
-        }
+                main div p {
+                        font-size: 32px;
+                        color: #F5FA05;
+                        font-weight: 400;
+                        margin-bottom: 24px;
+                }
 
-        main div p .purple {
-            color: #a90166;
-        }
+                main div p .yellow {
+                        color: #F5FA05;
+                }
 
-        main div p .green {
-            color:#037C08;
-        }
+                main div p .black {
+                        color: #F5FA05;
+                }
 
-        main div p .red {
-            color: #FF0000;
-        }
+                main div p .purple {
+                        color: #a90166;
+                }
 
-        main div p .pick {
-            color:#FF00E5;
-        }
+                main div p .green {
+                        color: #037C08;
+                }
 
-        /* 社群媒體Icon區 */
-        main div ul {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 52px;
-            padding: 20px 0 40px 0;
-        }
+                main div p .red {
+                        color: #FF0000;
+                }
 
-        main div ul li {}
+                main div p .pink {
+                        color: #FF00E5;
+                }
 
-        main div ul li a {}
+                main div .btn {
+                        padding: 20px 40px;
+                        border-radius: 10px;
+                        background: #ffcc77;
+                        color: #000;
+                        font-size: 20px;
+                        font-weight: 700;
+                        text-decoration: none;
+                        display: inline-block;
+                        /* Add display property for spacing */
+                        margin-top: 20px;
+                        /* Add margin for spacing */
+                }
 
-        main div ul li a img {
-            width: 44px;
-            height: 44px;
-        }
-
-        /* 所有作品 */
-        main div .btn {
-            padding: 20px 40px;
-            border-radius: 10px;
-            background: #ffcc77;
-            color: #fff;
-            font-size: 20px;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        /* 圖片*/
-        .pic-box img {
-            width: auto;
-            max-width: 100%;
-        }
-    </style>
+                .pic-box img {
+                        width: auto;
+                        max-width: 100%;
+                        height: auto;
+                        /* Change the height to auto for responsive images */
+                }
+        </style>
 </head>
-<!-- 網頁內容 -->
 
 <body>
-    <!-- 網頁Header區塊 -->
-    <!-- <header>
-        <nav>
-            <a href="#">我的作品</a>
-            <a href="#">關於我</a>
-            <a class="active" href="mailto:a32112354jhj@gmail.com">與我聯絡</a>
-        </nav>
-    </header> -->
+        <canvas id="canvas"></canvas>
+        <header>
+                <nav>
+                        <a href="#">我的作品</a>
+                        <a href="#">關於我</a>
+                        <a href="mailto:speed.thunder.postmanj@gmail.com">與我聯絡</a>
+                </nav>
+        </header>
+        <main>
+                <div>
+                        <h1><strong>蔡耀德</strong></h1>
+                        <p>
+                                <strong>
+                                <span>擋我者</span>
+                                <span class="red"><strong>死</strong></span>，
+                                <span class="purple">豁出去</span>的
+                                <span class="green">郵差</span>
+                                </strong>
+                        </p>
+                        <p>
+                                <strong>
+                                <span class="pink">信</span>在
+                                <span class="pink">人</span>在信亡人亡的
+                                <span class="pink">境界</span>，<br>
+                                <span class="red">看</span>的
+                                <span class="red">到</span>我
+                                <span class="red">車尾燈</span>就
+                                <span class="red">算</span>你
+                                <span class="red">贏</span>。
+                                </strong>
+                        </p>
+                <a href="#" class="btn">所有作品</a>
+                </div>
+                <div class="pic-box">
+                <!-- Replace with your image source -->
+                <img src="./個人網頁_1112/images/MYPIC 1.png" alt="我美嗎？" height="200px">
+                </div>
+        </main>
+        <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
 
-    <header>
-        <nav>
-            <a href="#">我的作品</a>
-            <a href="#">關於我</a>
-            <a href="#">與我聯絡</a>
-        </nav>
-    </header>
+        let cols, drops;
+        const fontSize = 18;
 
+        function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
 
-    <!-- 主要內容區塊 -->
-    <main>
-        <!-- 左邊內容區塊 -->
-        <div>
-            <h1><strong>蔡耀德</strong></h1>
-            <p>
-                <strong>
-                <span class= "black">擋我者</span>
-                <span class= "red"><strong>死</strong></span>，
-                <span class= "purple">豁出去</span>的
-                <span class= "green">郵差</span>
-                </strong>
-            </p>
-            <p><strong>信在人在信亡人亡的境界，<br>看的到我車尾燈就算你贏。</strong></p>
-            <!-- 社群媒體按鈕區塊 -->
-            <ul>
-                <li>
-                    <a href="#">
-                        <img src="./images/uil_line.png" alt="">
-                    <!-- 所有作品的連結按鈕 -->
-                    <a href="#" class="btn">所有作品</a>
-                    </a>
-                </li>
-            </ul>
+                cols = Math.floor(canvas.width / fontSize);
+                drops = Array(cols).fill(0);
+        }
 
-        </div>
-        <!-- 圖片區塊 -->
-        <div class="pic-box">
-            <img src="./images/MYPIC 1.png" alt="我美嗎？" height="400px">
-        </div>
+        function randomChar() {
+                return String.fromCharCode(Math.floor(Math.random() * (127 - 33) + 33));
+        }
 
-    </main>
+        function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+                ctx.font = `${fontSize}px monospace`;
+                ctx.fillStyle = '#0F0'; // Bright green color
+
+                for (let i = 0; i < cols; i++) {
+                        const text = randomChar();
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                                drops[i] = 0;
+                        }
+                        drops[i]++;
+                }
+        }
+
+        function animate() {
+                draw();
+                requestAnimationFrame(animate);
+        }
+
+        window.onresize = resizeCanvas;
+        resizeCanvas();
+        animate();
+</script>
 </body>
-
 </html>
