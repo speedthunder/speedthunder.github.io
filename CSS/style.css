@@ -1,0 +1,141 @@
+        body {
+                margin: 0;
+                overflow: hidden;
+                font-family: monospace;
+                background-color: black;
+                color: green;
+        }
+
+        canvas {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+        }
+
+        /* Personal webpage styles */
+        body * {
+                box-sizing: border-box;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+        }
+
+        body {
+                padding-top: 85px;
+                font-family: sans-serif;
+                /* Change font family */
+        }
+
+        header {
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                padding: 28px 0;
+                display: flex;
+                justify-content: center;
+                background-color: rgba(255, 255, 255, .8);
+                z-index: 10;
+        }
+
+        header nav {
+                width: 990px;
+                display: inline-flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 50px;
+        }
+
+        header nav a {
+                text-decoration: none;
+                color: rgba(0, 0, 0, 0.60);
+                font-size: 20px;
+                transition: .3s;
+        }
+
+        header nav a.active,
+        header nav a:hover {
+                color: #FF0000;
+        }
+
+        main {
+                width: 990px;
+                display: flex;
+                margin: auto;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding-top: 150px;
+                position: relative;
+                /* Ensure it is positioned in the document flow */
+                z-index: 10;
+        }
+
+        main div {
+                width: 50%;
+        }
+
+        main div h1 {
+                font-size: 60px;
+                color: #f5fa05;
+                font-weight: 400;
+                margin-bottom: 24px;
+        }
+
+        main div p {
+                font-size: 32px;
+                color: #F5FA05;
+                font-weight: 400;
+                margin-bottom: 24px;
+        }
+
+        main div p .yellow {
+                color: #F5FA05;
+        }
+
+        main div p .black {
+                color: #F5FA05;
+        }
+
+        main div p .purple {
+                color: #a90166;
+        }
+
+        main div p .green {
+                color: #037C08;
+        }
+
+        main div p .red {
+                color: #FF0000;
+        }
+
+        main div p .pink {
+                color: #FF00E5;
+        }
+
+        main div .btn {
+                padding: 20px 40px;
+                border-radius: 10px;
+                background: #ffcc77;
+                color: #000;
+                font-size: 20px;
+                font-weight: 700;
+                text-decoration: none;
+                display: inline-block;
+                /* Add display property for spacing */
+                margin-top: 20px;
+                /* Add margin for spacing */
+                transform: 0.8s;
+        }
+        main nav a.active,
+        main div .btn:hover{
+                color:#FF0000
+        }
+        .pic-box img {
+                width: auto;
+                max-width: 100%;
+                height: auto;
+                /* Change the height to auto for responsive images */
+        }
+
