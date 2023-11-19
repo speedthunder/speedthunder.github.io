@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>個人自介網頁</title>
+        <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+        <canvas id="canvas"></canvas>
+        <header>
+                <nav>
+                        <a href="#">我的作品</a>
+                        <a href="#">關於我</a>
+                        <a href="mailto:speed.thunder.postmanj@gmail.com">與我聯絡</a>
+                </nav>
+        </header>
+
+
+        <main>
+                <div>
+                        <h1><strong>蔡耀德</strong></h1>
+                        <p>
+                                <strong>
+                                <span>擋我者</span>
+                                <span class="red"><strong>死</strong></span>，
+                                <span class="purple">豁出去</span>的
+                                <span class="green">郵差</span>
+                                </strong>
+                        </p>
+                        <p>
+                                <strong>
+                                <span class="pink">信</span>在
+                                <span class="pink">人</span>在信亡人亡的
+                                <span class="pink">境界</span>，<br>
+                                <span class="red">看</span>的
+                                <span class="red">到</span>我
+                                <span class="red">車尾燈</span>就
+                                <span class="red">算</span>你
+                                <span class="red">贏</span>。
+                                </strong>
+                        </p>
+                <a href="#" class="btn">所有作品</a>
+                </div>
+                <div class="pic-box">
+                <!-- Replace with your image source -->
+                <img src="./images/MYPIC.png" alt="我美嗎？">
+                </div>
+        </main>
+        <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let cols, drops;
+        const fontSize = 18;
+
+        function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                cols = Math.floor(canvas.width / fontSize);
+                drops = Array(cols).fill(0);
+        }
+
+        function randomChar() {
+                return String.fromCharCode(Math.floor(Math.random() * (127 - 33) + 33));
+        }
+
+        function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.font = `${fontSize}px monospace`;
+                ctx.fillStyle = '#0F0'; // Bright green color
+
+                for (let i = 0; i < cols; i++) {
+                        const text = randomChar();
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                                drops[i] = 0;
+                        }
+                        drops[i]++;
+                }
+        }
+
+        function animate() {
+                draw();
+                requestAnimationFrame(animate);
+        }
+
+        window.onresize = resizeCanvas;
+        resizeCanvas();
+        animate();
+</script>
+</body>
+</html>
