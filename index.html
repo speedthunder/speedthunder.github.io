@@ -51,6 +51,52 @@
                 
                 </div>
         </main>
+                <script>
+                        const canvas = document.getElementById('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        let cols, drops;
+                        const fontSize = 18;
+
+                        function resizeCanvas() {
+                                canvas.width = window.innerWidth;
+                                canvas.height = window.innerHeight;
+
+                                cols = Math.floor(canvas.width / fontSize);
+                                drops = Array(cols).fill(0);
+                        }
+
+                        function randomChar() {
+                                return String.fromCharCode(Math.floor(Math.random() * (127 - 33) + 33));
+                        }
+
+                        function draw() {
+                                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                                ctx.font = `${fontSize}px monospace`;
+                                ctx.fillStyle = '#0F0'; // Bright green color
+
+                                for (let i = 0; i < cols; i++) {
+                                        const text = randomChar();
+                                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                                                drops[i] = 0;
+                                        }
+                                        drops[i]++;
+                                }
+                        }
+
+                        function animate() {
+                                draw();
+                                requestAnimationFrame(animate);
+                        }
+
+                        window.onresize = resizeCanvas;
+                        resizeCanvas();
+                        animate();
+                </script>
 
 </body>
 </html>
