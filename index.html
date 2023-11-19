@@ -5,8 +5,144 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>個人自介網頁</title>
-        <link rel="stylesheet" href="./css/style.css">
+        <style>
+                body {
+                        margin: 0;
+                        overflow: hidden;
+                        font-family: monospace;
+                        background-color: black;
+                        color: green;
+                }
 
+                canvas {
+                        display: block;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        z-index: -1;
+                }
+
+                /* Personal webpage styles */
+                body * {
+                        box-sizing: border-box;
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                }
+
+                body {
+                        padding-top: 85px;
+                        font-family: sans-serif;
+                        /* Change font family */
+                }
+
+                header {
+                        width: 100%;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        padding: 28px 0;
+                        display: flex;
+                        justify-content: center;
+                        background-color: rgba(255, 255, 255, .8);
+                        z-index: 10;
+                }
+
+                header nav {
+                        width: 990px;
+                        display: inline-flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        gap: 50px;
+                }
+
+                header nav a {
+                        text-decoration: none;
+                        color: rgba(0, 0, 0, 0.60);
+                        font-size: 20px;
+                        transition: .3s;
+                }
+
+                header nav a.active,
+                header nav a:hover {
+                        color: #FF0000;
+                }
+
+                main {
+                        width: 990px;
+                        display: flex;
+                        margin: auto;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        padding-top: 150px;
+                        position: relative;
+                        /* Ensure it is positioned in the document flow */
+                        z-index: 10;
+                }
+
+                main div {
+                        width: 50%;
+                }
+
+                main div h1 {
+                        font-size: 60px;
+                        color:  #f5fa05;
+                        font-weight: 400;
+                        margin-bottom: 24px;
+                }
+
+                main div p {
+                        font-size: 32px;
+                        color: #F5FA05;
+                        font-weight: 400;
+                        margin-bottom: 24px;
+                }
+
+                main div p .yellow {
+                        color: #F5FA05;
+                }
+
+                main div p .black {
+                        color: #F5FA05;
+                }
+
+                main div p .purple {
+                        color: #a90166;
+                }
+
+                main div p .green {
+                        color: #037C08;
+                }
+
+                main div p .red {
+                        color: #FF0000;
+                }
+
+                main div p .pink {
+                        color: #FF00E5;
+                }
+
+                main div .btn {
+                        padding: 20px 40px;
+                        border-radius: 10px;
+                        background: #ffcc77;
+                        color: #000;
+                        font-size: 20px;
+                        font-weight: 700;
+                        text-decoration: none;
+                        display: inline-block;
+                        /* Add display property for spacing */
+                        margin-top: 20px;
+                        /* Add margin for spacing */
+                }
+
+                .pic-box img {
+                        width: auto;
+                        max-width: 100%;
+                        height: auto;
+                        /* Change the height to auto for responsive images */
+                }
+        </style>
 </head>
 
 <body>
@@ -18,85 +154,77 @@
                         <a href="mailto:speed.thunder.postmanj@gmail.com">與我聯絡</a>
                 </nav>
         </header>
-
-
         <main>
                 <div>
                         <h1><strong>蔡耀德</strong></h1>
                         <p>
-                                <strong>
                                 <span>擋我者</span>
                                 <span class="red"><strong>死</strong></span>，
                                 <span class="purple">豁出去</span>的
                                 <span class="green">郵差</span>
-                                </strong>
-                        </p>
-                        <p>
-                                <strong>
-                                <span class="pink">信</span>在
-                                <span class="pink">人</span>在信亡人亡的
-                                <span class="pink">境界</span>，<br>
-                                <span class="red">看</span>的
-                                <span class="red">到</span>我
-                                <span class="red">車尾燈</span>就
-                                <span class="red">算</span>你
-                                <span class="red">贏</span>。
-                                </strong>
-                        </p>
-                <a href="#" class="btn">所有作品</a>
-                </div>
-                <div class="pic-box">
-                <!-- Replace with your image source -->
-                <img src="./images/MYPIC.png" alt="我美嗎？">
-                
-                </div>
-        </main>
-                <script>
-                        const canvas = document.getElementById('canvas');
-                        const ctx = canvas.getContext('2d');
+            </p>
+            <p>
+                <span class="pink">信</span>在
+                <span class="pink">人</span>在信亡人亡的
+                <span class="pink">境界</span>，<br>
+                <span class="red">看</span>的
+                <span class="red">到</span>我
+                <span class="red">車尾燈</span>就
+                <span class="red">算</span>你
+                <span class="red">贏</span>。
+            </p>
+            <a href="#" class="btn">所有作品</a>
+        </div>
+        <div class="pic-box">
+            <!-- Replace with your image source -->
+            <img src="./images/MYPIC 1.png" alt="我美嗎？">
+        </div>
+    </main>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
 
-                        let cols, drops;
-                        const fontSize = 18;
+        let cols, drops;
+        const fontSize = 14;
 
-                        function resizeCanvas() {
-                                canvas.width = window.innerWidth;
-                                canvas.height = window.innerHeight;
+        function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
 
-                                cols = Math.floor(canvas.width / fontSize);
-                                drops = Array(cols).fill(0);
+                cols = Math.floor(canvas.width / fontSize);
+                drops = Array(cols).fill(0);
+        }
+
+        function randomChar() {
+                return String.fromCharCode(Math.floor(Math.random() * (127 - 33) + 33));
+        }
+
+        function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.font = `${fontSize}px monospace`;
+                ctx.fillStyle = '#0F0'; // Bright green color
+
+                for (let i = 0; i < cols; i++) {
+                        const text = randomChar();
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                                drops[i] = 0;
                         }
+                        drops[i]++;
+                }
+        }
 
-                        function randomChar() {
-                                return String.fromCharCode(Math.floor(Math.random() * (127 - 33) + 33));
-                        }
+        function animate() {
+                draw();
+                requestAnimationFrame(animate);
+        }
 
-                        function draw() {
-                                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                                ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                                ctx.font = `${fontSize}px monospace`;
-                                ctx.fillStyle = '#0F0'; // Bright green color
-
-                                for (let i = 0; i < cols; i++) {
-                                        const text = randomChar();
-                                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                                                drops[i] = 0;
-                                        }
-                                        drops[i]++;
-                                }
-                        }
-
-                        function animate() {
-                                draw();
-                                requestAnimationFrame(animate);
-                        }
-
-                        window.onresize = resizeCanvas;
-                        resizeCanvas();
-                        animate();
-                </script>
-
+        window.onresize = resizeCanvas;
+        resizeCanvas();
+        animate();
+</script>
 </body>
 </html>
